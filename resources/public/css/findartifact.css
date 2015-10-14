@@ -1,0 +1,52 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* margin bottom by footer height */
+  margin-bottom: 60px;
+}
+
+.container {
+  width: auto;
+  max-width: 680px;
+  padding: 0 15px;
+}
+
+.container .text-muted {
+  margin: 20px 0;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+.form-inline .form-group input {
+  width: 500px;
+}
+
+.top-buffer {
+  margin-top: 20px;
+}
+
+.left-buffer-sm {
+  margin-left: 5px;
+}
+
+.left-buffer-lg {
+  margin-left: 15px;
+}
+
+.hover {
+  background-color: #EEE
+}
+
+.logo {
+  font-size: 20px;
+}
