@@ -2,36 +2,33 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/findartifact.css">
   </head>
   <body>
     <div id="main" class="container top-buffer">
-      <form class="form-inline" method="GET" action="search">
-        <div class="form-group">
-          <input type="text" class="form-control" id="query" name="q" placeholder="Type artifact id, group id or class name...">
-        </div>
-        <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i>&nbsp;Search</button>
-        <br/>
+      <div id="search" class="row"></div>
+      <div class="row">
         <small>Found <span id="results-count">42</span> results</small>
-      </form>
-      <div class="col-md-9 list">
-        <div class="artifact row top-buffer">
-          <span><a class="name" href="artifact?c=this.is:my-artifact">this.is:my-artifact</a></span><br>
-          <span>Version <span class="latest-version">3.8.42</span> and <span class="version-count">42</span> older versions found</span><br>
-          <span><small>Found in <span class="location">JBoss Nexus</span></small></span>
+      </div>
+      <div class="row">
+        <div class="col-md-9 list">
+          <div class="artifact row top-buffer">
+            <span><a class="name" href="artifact?c=this.is:my-artifact">this.is:my-artifact</a></span><br>
+            <span>Version <span class="latest-version">3.8.42</span> and <span class="version-count">42</span> older versions found</span><br>
+            <span><small>Found in <span class="location">JBoss Nexus</span></small></span>
+          </div>
+          <!--<div class="pages row top-buffer">
+            <span class="current">1</span>
+            <a href="search?q=org.slf4j&p=2" class="page left-buffer-sm">2</a>
+            <a href="search?q=org.slf4j&p=3" class="page left-buffer-sm">3</a>
+            <a href="search?q=org.slf4j&p=2" class="next left-buffer-lg">Next</a>
+          </div>-->
         </div>
-        <!--<div class="pages row top-buffer">
-          <span class="current">1</span>
-          <a href="search?q=org.slf4j&p=2" class="page left-buffer-sm">2</a>
-          <a href="search?q=org.slf4j&p=3" class="page left-buffer-sm">3</a>
-          <a href="search?q=org.slf4j&p=2" class="next left-buffer-lg">Next</a>
+        <!--<div class="col-md-3 top-buffer suggestions">
+          <small>Did you mean to search one of these groups?</small>
+          <span class="suggestion"><a href="search?q=g:org.slf4j" class="group">org.slf4j</a></span><br>
+          <span class="suggestion"><a href="search?q=g:org.slf4j13" class="group">org.slf4j13</a></span><br>
         </div>-->
       </div>
-      <!--<div class="col-md-3 top-buffer suggestions">
-        <small>Did you mean to search one of these groups?</small>
-        <span class="suggestion"><a href="search?q=g:org.slf4j" class="group">org.slf4j</a></span><br>
-        <span class="suggestion"><a href="search?q=g:org.slf4j13" class="group">org.slf4j13</a></span><br>
-      </div>-->
     </div>
   </body>
 </html>
