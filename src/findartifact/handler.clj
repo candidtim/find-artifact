@@ -14,7 +14,7 @@
 
 (defroutes app-routes
   (GET "/" [] (views/index))
-  (GET "/search" [q] (views/results (query-maven-central q 0 20)))
+  (GET "/search" [q] (views/results q (query-maven-central q 0 20)))
   (GET "/about" [] (views/about))
   (route/not-found "Not Found"))
 

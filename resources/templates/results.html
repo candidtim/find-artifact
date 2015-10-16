@@ -1,21 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Search results &middot; Find Artifact</title>
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/findartifact.css">
-
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
   </head>
   <body>
-    <div class="container top-buffer">
+    <div id="main" class="container top-buffer">
       <form class="form-inline" method="GET" action="search">
         <div class="form-group">
           <input type="text" class="form-control" id="query" name="q" placeholder="Type artifact id, group id or class name...">
@@ -43,12 +33,5 @@
         <span class="suggestion"><a href="search?q=g:org.slf4j13" class="group">org.slf4j13</a></span><br>
       </div>-->
     </div>
-    <footer class="footer">
-      <div class="container">
-        <p class="text-muted"><a href='about'>About</a> &middot; Copyright 2015 Timur Rubeko</p>
-      </div>
-    </footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   </body>
 </html>
