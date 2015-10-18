@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div id="main" class="container top-buffer">
+      <div class="row">
+        <div id="search" class="col-md-12">
+        </div>
+      </div>
+      <div class="row top-buffer">
+        <div class="col-md-12">
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="tab-item"><a href="#tabid" class="tab-title" role="tab" data-toggle="tab">Buildtool</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 tab-content">
+          <div role="tabpanel" class="tab-pane top-buffer">
+            <pre class="dependency-id">org.slf4j:slf4j-parent:1.7.12</pre>
+            <div class="add-info">Also includes classifiers: <span class="classifiers">javadoc, sources</span></div>
+            <div class="btn btn-small btn-default btn-copy top-buffer" title="Copy to clipboard" data-clipboard-target="dependency-id">
+              <span class="glyphicon glyphicon-copy" aria-hidden="true"></span> Copy!
+            </div>
+            <div class="btn btn-small btn-default btn-set-default top-buffer" title="Make Buildtool default" onclick="setDefaultBuildTool('buildtool')">
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Make <span class="btn-title">Buildtool</span> default
+            </div>
+            </div>
+          </div>
+          <!--<div id="clipdone" style="display:none;margin-top:5px;margin-left:7px;"><span class="label label-info">Copied!</span></div>
+          <div id="setdeaultdone" style="display:none;margin-top:5px;margin-left:72px;"><span class="label label-info">Done!</span></div>-->
+        </div>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>
