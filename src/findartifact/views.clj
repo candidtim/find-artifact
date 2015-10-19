@@ -55,9 +55,14 @@
 ; Artifact details
 
 (defn get-classifiers [all-artifacts]
-  (map #(.substring % 1 (.indexOf % "."))
-  (filter #(.startsWith % "-")
-  all-artifacts)))
+  (sort
+    (comparator (fn [a b] (< (.length a) (.length b))))
+    all-artifacts))
+
+(defn download-url [group artifact version classifier]
+  ; http://search.maven.org/remotecontent?filepath=com/jolira/guice/3.0.0/guice-3.0.0.pom
+  (format "http://search.maven.org/remotecontent?filepath=%s/%s/%s/%s-%s%s"
+    (clojure.string/replace group \. \/) artifact version artifact version classifier))
 
 (enlive/defsnippet artifact-content "templates/artifact.html" [:div#main] [form {group :g artifact :a version :v all-artifacts :ec}]
   [:div#search] (enlive/content form)
@@ -70,8 +75,9 @@
   [:div.tab-content [:div.tab-pane]] (enlive/clone-for [[tool tool-name tool-fmt] build-tools]
     [:pre.dependency-id] (enlive/content (format tool-fmt group artifact version))
     [:pre.dependency-id] (enlive/set-attr :id (format "dependency-%s" tool-name))
-    [:div.add-info] (if (empty? (get-classifiers all-artifacts)) nil identity)
-    [:span.classifiers] (enlive/content (clojure.string/join ", " (get-classifiers all-artifacts)))
+    [:span.classifiers [:a.download]] (enlive/clone-for [classifier (get-classifiers all-artifacts)]
+      [:a.download] (enlive/set-attr :href (download-url group artifact version classifier))
+      [:a.download] (enlive/content (.substring classifier 1)))
     [:div.btn-copy] (enlive/set-attr :data-clipboard-target (format "dependency-%s" tool-name))
     [:div.btn-set-default] (enlive/set-attr :title (format "Make %s default" tool-name))
     [:div.btn-set-default] (enlive/set-attr :onclick (format "setDefaultBuildTool('%s')" tool-name))
