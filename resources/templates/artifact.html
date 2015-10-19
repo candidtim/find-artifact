@@ -23,18 +23,36 @@
             <div>All artifacts (includes classifiers): <span class="classifiers">
               <a class="download left-buffer-sm" href="#download">javadoc</a>
             </span></div>
-            <div class="btn btn-small btn-default btn-copy top-buffer" title="Copy to clipboard" data-clipboard-target="dependency-id">
-              <span class="glyphicon glyphicon-copy" aria-hidden="true"></span> Copy!
-            </div>
-            <div class="btn btn-small btn-default btn-set-default top-buffer" title="Make Buildtool default" onclick="setDefaultBuildTool('buildtool')">
+            <a role="button" tabindex="0" class="btn btn-small btn-default btn-copy top-buffer"
+               data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="Copied!"
+               onclick="copy('my-id', 'dependency-id');">
+              <span class="glyphicon glyphicon-copy" aria-hidden="true"></span> Copy
+            </a>
+            <div class="btn btn-small btn-default btn-set-default top-buffer" onclick="setDefaultBuildTool('buildtool')">
               <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Make <span class="btn-title">Buildtool</span> default
             </div>
-            </div>
           </div>
-          <!--<div id="clipdone" style="display:none;margin-top:5px;margin-left:7px;"><span class="label label-info">Copied!</span></div>
-          <div id="setdeaultdone" style="display:none;margin-top:5px;margin-left:72px;"><span class="label label-info">Done!</span></div>-->
         </div>
       </div>
+      <script>
+        function copy( buttonid, containerid ) {
+          var node = document.getElementById( containerid );
+          if ( document.selection ) {
+            var range = document.body.createTextRange();
+            range.moveToElementText( node );
+            range.select();
+          } else if ( window.getSelection ) {
+            var range = document.createRange();
+            range.selectNodeContents( node );
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange( range );
+          }
+          var successful = document.execCommand('copy');
+          if (successful) {
+            $('#'+buttonid).popover('show');
+          }
+        }
+      </script>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>

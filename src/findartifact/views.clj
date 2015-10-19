@@ -78,8 +78,8 @@
     [:span.classifiers [:a.download]] (enlive/clone-for [classifier (get-classifiers all-artifacts)]
       [:a.download] (enlive/set-attr :href (download-url group artifact version classifier))
       [:a.download] (enlive/content (.substring classifier 1)))
-    [:div.btn-copy] (enlive/set-attr :data-clipboard-target (format "dependency-%s" tool-name))
-    [:div.btn-set-default] (enlive/set-attr :title (format "Make %s default" tool-name))
+    [:a.btn-copy] (enlive/set-attr :id (format "btn-copy-%s" tool-name))
+    [:a.btn-copy] (enlive/set-attr :onclick (format "copy('btn-copy-%s', 'dependency-%s')" tool-name tool-name))
     [:div.btn-set-default] (enlive/set-attr :onclick (format "setDefaultBuildTool('%s')" tool-name))
     [:span.btn-title] (enlive/content tool-name)
     [:div.tab-pane] (if (= tool default-build-tool) (enlive/add-class "active") identity)
