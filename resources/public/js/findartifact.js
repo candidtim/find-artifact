@@ -1,7 +1,7 @@
 window.onload = function () {
   'use strict';
 
-  var defaultBuildToolCookie = 'default-buildTool';
+  var defaultBuildToolCookie = 'default-build-tool';
 
   var showPopover = function (buttonId) {
     $('#'+buttonId).popover('show');
@@ -54,12 +54,17 @@ window.onload = function () {
     showPopover(buttonId);
   };
 
+  var activateBuildToolTab = function (defaultBuildTool) {
+    var buildTool = defaultBuildTool || 'Maven';
+    $('#tab-title-'+buildTool).addClass('active');
+    $('#tab-'+buildTool).addClass('active');
+  };
+
 
   //
   // actions on load
   //
-  $('#tab-title-'+getCookie(defaultBuildToolCookie)).addClass('active');
-  $('#tab-'+getCookie(defaultBuildToolCookie)).addClass('active');
+  activateBuildToolTab(getCookie(defaultBuildToolCookie));
 
 
   window['findartifact'] = window['findartifact'] || {};
