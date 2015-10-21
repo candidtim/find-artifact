@@ -25,36 +25,17 @@
             </span></div>
             <a role="button" tabindex="0" class="btn btn-small btn-default btn-copy top-buffer"
                data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="Copied!"
-               onclick="copy('my-id', 'dependency-id');">
+               onclick="copy('my-id', 'dependency-id')">
               <span class="glyphicon glyphicon-copy" aria-hidden="true"></span> Copy
             </a>
-            <div class="btn btn-small btn-default btn-set-default top-buffer" onclick="setDefaultBuildTool('buildtool')">
+            <a role="button" tabindex="0" class="btn btn-small btn-default btn-set-default top-buffer"
+               data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="Done!"
+               onclick="setDefaultBuildTool('my-id', 'buildtool')">
               <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Make <span class="btn-title">Buildtool</span> default
             </div>
           </div>
         </div>
       </div>
-      <script>
-        function copy( buttonid, containerid ) {
-          var node = document.getElementById( containerid );
-          if ( document.selection ) {
-            var range = document.body.createTextRange();
-            range.moveToElementText( node );
-            range.select();
-          } else if ( window.getSelection ) {
-            var range = document.createRange();
-            range.selectNodeContents( node );
-            window.getSelection().removeAllRanges();
-            window.getSelection().addRange( range );
-          }
-          var successful = document.execCommand('copy');
-          if (successful) {
-            $('#'+buttonid).popover('show');
-          }
-        }
-      </script>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   </body>
 </html>

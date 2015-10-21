@@ -69,8 +69,8 @@
   ; tabs titles
   [:ul.nav-tabs [:li.tab-item]] (enlive/clone-for [[tool tool-name _] build-tools]
     [:a.tab-title] (enlive/content tool-name)
-    [:a.tab-title] (enlive/set-attr :href (format "#tab-%s" tool-name))
-    [:li.tab-item] (if (= tool default-build-tool) (enlive/add-class "active") identity))
+    [:li.tab-item] (enlive/set-attr :id (format "tab-title-%s" tool-name))
+    [:a.tab-title] (enlive/set-attr :href (format "#tab-%s" tool-name)))
   ; tabs contents
   [:div.tab-content [:div.tab-pane]] (enlive/clone-for [[tool tool-name tool-fmt] build-tools]
     [:pre.dependency-id] (enlive/content (format tool-fmt group artifact version))
@@ -79,10 +79,10 @@
       [:a.download] (enlive/set-attr :href (download-url group artifact version classifier))
       [:a.download] (enlive/content (.substring classifier 1)))
     [:a.btn-copy] (enlive/set-attr :id (format "btn-copy-%s" tool-name))
-    [:a.btn-copy] (enlive/set-attr :onclick (format "copy('btn-copy-%s', 'dependency-%s')" tool-name tool-name))
-    [:div.btn-set-default] (enlive/set-attr :onclick (format "setDefaultBuildTool('%s')" tool-name))
+    [:a.btn-copy] (enlive/set-attr :onclick (format "window['findartifact'].copy('btn-copy-%s', 'dependency-%s')" tool-name tool-name))
+    [:a.btn-set-default] (enlive/set-attr :id (format "btn-set-default-%s" tool-name))
+    [:a.btn-set-default] (enlive/set-attr :onclick (format "window['findartifact'].setDefaultBuildTool('btn-set-default-%s', '%s')" tool-name tool-name))
     [:span.btn-title] (enlive/content tool-name)
-    [:div.tab-pane] (if (= tool default-build-tool) (enlive/add-class "active") identity)
     [:div.tab-pane] (enlive/set-attr :id (format "tab-%s" tool-name))))
 
 (defn artifact [{group :g artifact-name :a :as artifact}]
