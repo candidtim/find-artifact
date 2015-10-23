@@ -54,6 +54,9 @@
     [:span.latest-version] (enlive/content (str (:latestVersion artifact)))
     [:span.version-count] (enlive/content (str (dec (:versionCount artifact))))
     [:span.location] (enlive/content (:repositoryId artifact)))
+  [:div.spell-suggestions] (if (nil? (:spelling-suggestions query-result)) (enlive/set-attr :class "hidden") identity)
+  [:div.spell-suggestions [:span.spell-suggestion]] (enlive/clone-for [suggestion (:spelling-suggestions query-result)]
+    [:a.suggestion] (enlive/content suggestion))
   [:div.group-suggestions] (if (< (count (frequent-groups results)) 2) (enlive/set-attr :class "hidden") identity)
   [:div.group-suggestions [:span.group-suggestion]] (enlive/clone-for [group (frequent-groups results)]
     [:a.group-name] (enlive/content group)

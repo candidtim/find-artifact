@@ -5,10 +5,10 @@
 (def maven-central-url "http://search.maven.org/solrsearch/select")
 
 (defn query [query from rows]
-  (get-in (client/get maven-central-url
-            {:query-params {"q" query  "start" from "rows" rows "wt" "json"}
-             :as :json})
-          [:body :response]))
+  (let [response (get (client/get maven-central-url
+                        {:query-params {"q" query  "start" from "rows" rows "wt" "json"} :as :json})
+                      :body)]
+    (assoc (get response :response) :spelling-suggestions (get-in response [:spellcheck :suggestions 1 :suggestion]))))
 
 (defn query-group [group from rows]
   (get-in (client/get maven-central-url
