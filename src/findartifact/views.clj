@@ -38,6 +38,13 @@
 
 
 ; Results list
+
+(defn frequent-groups [result-list]
+  (let [grouped (group-by #(:g %) result-list)
+        group-count (zipmap (keys grouped) (map #(count %) (vals grouped)))
+        worthy-groups (filter #(> (group-count %) 5) (keys grouped))]
+    (sort (comparator (fn [a b] (> (group-count a) (group-count b)))) worthy-groups)))
+
 (enlive/defsnippet results-content "templates/results.html" [:div#main] [form {results :docs :as query-result}]
   [:div#search] (enlive/content form)
   [:span#results-count] (enlive/content (str (:numFound query-result)))
@@ -46,7 +53,10 @@
     [:a.name] (enlive/set-attr :href (format "artifact?g=%s&a=%s" (:g artifact) (:a artifact)))
     [:span.latest-version] (enlive/content (str (:latestVersion artifact)))
     [:span.version-count] (enlive/content (str (dec (:versionCount artifact))))
-    [:span.location] (enlive/content (:repositoryId artifact))))
+    [:span.location] (enlive/content (:repositoryId artifact)))
+  [:div.group-suggestions [:span.group-suggestion]] (enlive/clone-for [group (frequent-groups results)]
+    [:a.group-name] (enlive/content group)
+    [:a.group-name] (enlive/set-attr :href (format "search?q=g:%s" group))))
 
 (defn results [query query-result]
   (base (format "%s - Find Artifact" query) (results-content (search-form false query) query-result)))
