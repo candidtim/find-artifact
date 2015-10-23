@@ -54,6 +54,7 @@
     [:span.latest-version] (enlive/content (str (:latestVersion artifact)))
     [:span.version-count] (enlive/content (str (dec (:versionCount artifact))))
     [:span.location] (enlive/content (:repositoryId artifact)))
+  [:div.group-suggestions] (if (< (count (frequent-groups results)) 2) (enlive/set-attr :class "hidden") identity)
   [:div.group-suggestions [:span.group-suggestion]] (enlive/clone-for [group (frequent-groups results)]
     [:a.group-name] (enlive/content group)
     [:a.group-name] (enlive/set-attr :href (format "search?q=g:%s" group))))
