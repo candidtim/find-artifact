@@ -22,7 +22,7 @@
     #".*:.*"    (let [[_ g a] (re-find #"(.*):(.*)" q)]
                   (redirect (str "/artifact?" (form-encode {:g g :a a}))))
     :else (views/results q (central/query q 0 max-results))))
-  (GET "/artifact" [g a] (views/artifact (central/get-artifact g a)))
+  (GET "/artifact" [g a v] (views/artifact (central/get-artifact g a v max-results)))
   (GET "/about" [] (views/about))
   (route/not-found "Not Found"))
 

@@ -43,6 +43,10 @@ body {
   margin-left: 15px;
 }
 
+.right-buffer-lg {
+  margin-right: 15px;
+}
+
 .hover {
   background-color: #EEE
 }

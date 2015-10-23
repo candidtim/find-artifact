@@ -23,6 +23,13 @@
             <div>All artifacts (includes classifiers): <span class="classifiers">
               <a class="download left-buffer-sm" href="#download">javadoc</a>
             </span></div>
+            <div>
+              Known versions: <span class="version-count">42</span> in total
+              <a href="#" class="show-all-versions" onclick="$('div.all-versions').toggleClass('hidden');">(show all versions)</a>
+            </div>
+            <div class="all-versions top-buffer hidden">
+              <span class="version right-buffer-lg"><a class="version" href="#">1.0.0</a> </span>
+            </div>
             <a role="button" tabindex="0" class="btn btn-small btn-default btn-copy top-buffer"
                data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="Copied!"
                onclick="copy('my-id', 'dependency-id')">
@@ -32,7 +39,7 @@
                data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="Done!"
                onclick="setDefaultBuildTool('my-id', 'buildtool')">
               <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Make <span class="btn-title">Buildtool</span> default
-            </div>
+            </a>
           </div>
         </div>
       </div>

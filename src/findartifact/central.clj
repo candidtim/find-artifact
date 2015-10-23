@@ -16,8 +16,12 @@
              :as :json})
           [:body :response]))
 
-(defn get-artifact [g a]
-  (first (get-in (client/get maven-central-url
-                   {:query-params {"q" (format "g:\"%s\" AND a:\"%s\"" g a) "rows" 1 "core" "gav" "wt" "json"}
-                    :as :json})
-                 [:body :response :docs])))
+(defn get-artifact [g a v max-versions]
+  (let [response (get-in (client/get maven-central-url
+                           {:query-params {"q" (format "g:\"%s\" AND a:\"%s\"" g a) "rows" max-versions "core" "gav" "wt" "json"}
+                            :as :json})
+                         [:body :response :docs])
+        artifact (if (nil? v)
+                   (first response)
+                   (first (filter #(= (:v %) v) response)))]
+    (assoc artifact :versions (map #(:v %) response))))

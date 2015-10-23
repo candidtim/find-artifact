@@ -74,7 +74,7 @@
   (format "http://search.maven.org/remotecontent?filepath=%s/%s/%s/%s-%s%s"
     (clojure.string/replace group \. \/) artifact version artifact version classifier))
 
-(enlive/defsnippet artifact-content "templates/artifact.html" [:div#main] [form {group :g artifact :a version :v all-artifacts :ec}]
+(enlive/defsnippet artifact-content "templates/artifact.html" [:div#main] [form {group :g artifact :a version :v all-artifacts :ec all-versions :versions}]
   [:div#search] (enlive/content form)
   ; tabs titles
   [:ul.nav-tabs [:li.tab-item]] (enlive/clone-for [[tool tool-name _] build-tools]
@@ -88,6 +88,10 @@
     [:span.classifiers [:a.download]] (enlive/clone-for [classifier (get-classifiers all-artifacts)]
       [:a.download] (enlive/set-attr :href (download-url group artifact version classifier))
       [:a.download] (enlive/content (.substring classifier 1)))
+    [:span.version-count] (enlive/content (str (count all-versions)))
+    [:div.all-versions [:span.version]] (enlive/clone-for [version all-versions]
+      [:a.version] (enlive/content version)
+      [:a.version] (enlive/set-attr :href (format "artifact?g=%s&a=%s&v=%s" group, artifact version)))
     [:a.btn-copy] (enlive/set-attr :id (format "btn-copy-%s" tool-name))
     [:a.btn-copy] (enlive/set-attr :onclick (format "window['findartifact'].copy('btn-copy-%s', 'dependency-%s')" tool-name tool-name))
     [:a.btn-set-default] (enlive/set-attr :id (format "btn-set-default-%s" tool-name))
