@@ -1,4 +1,4 @@
-(defproject findartifact "1.0.0"
+(defproject findartifact "1.1.0-SNAPSHOT"
   :description "Maven Repository search tool that cannot be simpler"
   :url "https://github.com/candidtim/find-artifact"
   :min-lein-version "2.0.0"
