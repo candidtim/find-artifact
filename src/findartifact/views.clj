@@ -47,7 +47,7 @@
 
 (enlive/defsnippet results-content "templates/results.html" [:div#main] [form {results :docs :as query-result}]
   [:div#search] (enlive/content form)
-  [:span#results-count] (enlive/content (str (:numFound query-result)))
+  [:span#results-count] (enlive/content (if (nil? query-result) "no" (str (:numFound query-result))))
   [:div.list [:div.artifact]] (enlive/clone-for [artifact results]
     [:a.name] (enlive/content (:id artifact))
     [:a.name] (enlive/set-attr :href (format "artifact?g=%s&a=%s" (:g artifact) (:a artifact)))
