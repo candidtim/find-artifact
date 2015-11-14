@@ -20,11 +20,24 @@ To start a web server for the application, run:
 
 ## Deployment
 
+### Server requirements
+
+Server should have nginx installed and configured. Nginx configuration is exepected in
+`/usr/local/nginx/conf/nginx.conf`, and is expected to have a line `#insertserversbelow` somewhere in the `http`
+section, after which the server configuration will be inserted.
+
+Server should have an active user which will run the application. User should be present before plyabook, as it
+will not create one otherwise.
+
+### Building an app for deployment
+
 To build a ring uberjar:
 
     lein clean && lein ring uberjar
 
-Deployment is managed by Ansible. Create `hosts` file:
+### Ansible config and use
+
+Create `hosts` file:
 
     [findartifactweb]
     ip or hostname

@@ -1,2 +1,5 @@
-appuser: ???
-approot: ???
+appuser: ??? user to run the application; should exist (not created by playbook)
+approot: ??? path to the directory where the application is deployed to
+appserver: ??? server name for nginx configutation (like `findartifact.com`)
+nginxlogdir: ??? path to nginx log direcotory (used in nginx server conf)
+nginx: ??? path to nginx executalble (used to start/stop nginx)

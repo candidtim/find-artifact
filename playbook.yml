@@ -5,10 +5,26 @@
     version: 1.1.0-SNAPSHOT
     appuser: ???
     approot: ???
+    appserver: ???
+    nginx: ???
+    nginxlogdir: ???
   vars_files:
     - vars.yml
 
   tasks:
+
+    - name: create application directory
+      file: path={{ approot }}/log state=directory owner={{ appuser }} group={{ appuser }} mode=0755
+
+    - name: copy nginx config
+      template: src=nginx.conf.template dest=/usr/local/nginx/conf/findartifact.conf owner=root group=root mode=0644
+      notify:
+        - restart nginx
+
+    - name: add nginx config
+      lineinfile: dest=/usr/local/nginx/conf/nginx.conf line="include findartifact.conf;" insertafter="^#insertserversbelow" backup=yes
+      notify:
+        - restart nginx
 
     - name: copy ring uberjar
       copy: src=target/findartifact-{{ version }}-standalone.jar dest={{ approot }}/find-artifact.jar owner={{ appuser }} group={{ appuser }} mode=0644
@@ -28,3 +44,5 @@
       async: 1
       poll: 0
 
+    - name: restart nginx
+      command: "{{ nginx }} -s reload"
