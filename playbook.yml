@@ -1,11 +1,17 @@
 ---
 - hosts: findartifactweb
   become: yes
+  vars:
+    version: 1.1.0-SNAPSHOT
+    appuser: ???
+    approot: ???
+  vars_files:
+    - vars.yml
 
   tasks:
 
     - name: copy ring uberjar
-      copy: src=target/findartifact-{{ version }}-standalone.jar dest={{ approot }}/find-artifact.jar owner={{ fauser }} group={{ fauser }} mode=0644
+      copy: src=target/findartifact-{{ version }}-standalone.jar dest={{ approot }}/find-artifact.jar owner={{ appuser }} group={{ appuser }} mode=0644
       notify:
         - stop application
         - start application
@@ -13,11 +19,11 @@
   handlers:
 
     - name: stop application
-      become_user: "{{ fauser }}"
-      command: /usr/bin/killall java -u "{{ fauser | quote }}"
+      become_user: "{{ appuser }}"
+      command: /usr/bin/killall java -u "{{ appuser | quote }}"
 
     - name: start application
-      become_user: "{{ fauser }}"
+      become_user: "{{ appuser }}"
       shell: java -jar {{ approot }}/find-artifact.jar >> {{ approot }}/log/find-artifact.log 2>&1 & disown
       async: 1
       poll: 0

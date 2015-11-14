@@ -24,18 +24,19 @@ To build a ring uberjar:
 
     lein clean && lein ring uberjar
 
-Deployment is managed by Ansible. Install Ansible:
-
-    apt-get install ansible
-
-On management system, configure a dedicated group and host in `/etc/ansible/hosts`, for example:
+Deployment is managed by Ansible. Create `hosts` file:
 
     [findartifactweb]
     ip or hostname
 
-Update application on the server:
+Configure deployment variables:
 
-    ansible-playbook playbook.yml -u shh-user --private-key=/path/to/ssh/key -e version=assembled-version -e fauser=user-running-app -e approot=/path/to/app/dir
+    cp vars.yml.template vars.yml
+    # edit vars.yml
+
+Deploy/Update application on the server:
+
+    ansible-playbook -i hosts playbook.yml
 
 ## License
 
