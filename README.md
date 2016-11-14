@@ -1,3 +1,6 @@
+> **This project is retired. If anyone is willing to take over it, and also host it somwehere, you are most welcome. I still think this project has good ideas behind, so I will be glad to transfer it to anyone having intrest in it.**
+
+
 # Find Artifact
 
 Find Artifact is a simple Maven Repository search tool. It's goal is best explained in how it differs from existing ones:
